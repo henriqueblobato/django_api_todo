@@ -1,6 +1,6 @@
-# Django API Project
+# Django TO DO API 
 
-This Django project serves as an API for a Todo application. It provides endpoints for managing Todo items and includes authentication using tokens.
+This Django project serves as an API for a Todo application. It uses Github Actions on the main branch to run the tests. It provides endpoints for managing Todo items and includes authentication using tokens.
 
 ## Project Structure
 

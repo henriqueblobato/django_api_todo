@@ -18,14 +18,20 @@ from django.contrib import admin
 from django.urls import path, include
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-from api.views import CustomAuthToken
 
 # Django Spectacular endpoints
 urlpatterns = [
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+]
+
+# Authentication JWT endpoints
+urlpatterns += [
+    path('auth/token/', obtain_jwt_token),
+    path('auth/token/refresh/', refresh_jwt_token),
 ]
 
 # Internal endpoints
@@ -35,6 +41,6 @@ urlpatterns += [
 
 # External endpoints
 urlpatterns += [
-    path('auth/', CustomAuthToken.as_view(), name='api-token-auth'),
+    # path('auth/', CustomAuthToken.as_view(), name='api-token-auth'),
     path('api/', include('api.urls'))
 ]
